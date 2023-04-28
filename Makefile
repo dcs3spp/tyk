@@ -17,6 +17,10 @@ TEST_COUNT=1
 BENCH_REGEX=.
 BENCH_RUN=NONE
 
+.PHONY: build-swag
+build-swag:
+	go-swagger3 --debug --module-path . --output oas.yml --schema-without-pkg --generate-yaml true
+
 .PHONY: test
 test:
 	$(GOTEST) -run=$(TEST_REGEX) -count=$(TEST_COUNT) ./...
