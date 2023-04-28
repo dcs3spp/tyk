@@ -1,0 +1,339 @@
+components:
+  schemas:
+    APILimit:
+      properties:
+        max_query_depth:
+          type: integer
+        per:
+          type: number
+        quota_max:
+          type: integer
+        quota_remaining:
+          type: integer
+        quota_renewal_rate:
+          type: integer
+        quota_renews:
+          type: integer
+        rate:
+          type: number
+        throttle_interval:
+          type: number
+        throttle_retry_limit:
+          type: integer
+      type: object
+    AccessDefinition:
+      properties:
+        allowance_scope:
+          type: string
+        allowed_types:
+          items:
+            $ref: '#/components/schemas/Type'
+          type: array
+        allowed_urls:
+          items:
+            properties:
+              methods:
+                items:
+                  type: string
+                type: array
+              url:
+                type: string
+            type: object
+          type: array
+        api_id:
+          type: string
+        api_name:
+          type: string
+        disable_introspection:
+          type: boolean
+        field_access_rights:
+          items:
+            properties:
+              field_name:
+                type: string
+              limits:
+                $ref: '#/components/schemas/FieldLimits'
+                type: object
+              type_name:
+                type: string
+            type: object
+          type: array
+        limit:
+          $ref: '#/components/schemas/APILimit'
+          type: object
+        restricted_types:
+          items:
+            properties:
+              fields:
+                items:
+                  type: string
+                type: array
+              name:
+                type: string
+            type: object
+          type: array
+        versions:
+          items:
+            type: string
+          type: array
+      type: object
+    AccessSpec:
+      properties:
+        methods:
+          items:
+            type: string
+          type: array
+        url:
+          type: string
+      type: object
+    BasicAuthData:
+      properties:
+        hash_type:
+          $ref: '#/components/schemas/HashType'
+          type: string
+        password:
+          type: string
+      type: object
+    FieldAccessDefinition:
+      properties:
+        field_name:
+          type: string
+        limits:
+          $ref: '#/components/schemas/FieldLimits'
+          type: object
+        type_name:
+          type: string
+      type: object
+    FieldLimits:
+      properties:
+        max_query_depth:
+          type: integer
+      type: object
+    HashType:
+      type: string
+    JWTData:
+      properties:
+        secret:
+          type: string
+      type: object
+    Monitor:
+      properties:
+        trigger_limits:
+          items:
+            type: number
+          type: array
+      type: object
+    SessionState:
+      properties:
+        access_rights:
+          properties:
+            key:
+              properties:
+                allowance_scope:
+                  type: string
+                allowed_types:
+                  items:
+                    $ref: '#/components/schemas/Type'
+                  type: array
+                allowed_urls:
+                  items:
+                    properties:
+                      methods:
+                        items:
+                          type: string
+                        type: array
+                      url:
+                        type: string
+                    type: object
+                  type: array
+                api_id:
+                  type: string
+                api_name:
+                  type: string
+                disable_introspection:
+                  type: boolean
+                field_access_rights:
+                  items:
+                    properties:
+                      field_name:
+                        type: string
+                      limits:
+                        $ref: '#/components/schemas/FieldLimits'
+                        type: object
+                      type_name:
+                        type: string
+                    type: object
+                  type: array
+                limit:
+                  $ref: '#/components/schemas/APILimit'
+                  type: object
+                restricted_types:
+                  items:
+                    properties:
+                      fields:
+                        items:
+                          type: string
+                        type: array
+                      name:
+                        type: string
+                    type: object
+                  type: array
+                versions:
+                  items:
+                    type: string
+                  type: array
+              type: object
+          type: object
+        alias:
+          type: string
+        allowance:
+          type: number
+        apply_policies:
+          items:
+            type: string
+          type: array
+        apply_policy_id:
+          type: string
+        basic_auth_data:
+          $ref: '#/components/schemas/BasicAuthData'
+          type: object
+        certificate:
+          type: string
+        data_expires:
+          type: integer
+        date_created:
+          format: date-time
+          type: string
+        enable_detail_recording:
+          type: boolean
+        enable_detailed_recording:
+          type: boolean
+        enable_http_signature_validation:
+          type: boolean
+        expires:
+          type: integer
+        hmac_enabled:
+          type: boolean
+        hmac_string:
+          type: string
+        id_extractor_deadline:
+          type: integer
+        is_inactive:
+          type: boolean
+        jwt_data:
+          $ref: '#/components/schemas/JWTData'
+          type: object
+        keyHash:
+          type: string
+        last_check:
+          type: integer
+        last_updated:
+          type: string
+        max_query_depth:
+          type: integer
+        meta_data:
+          properties:
+            key:
+              type: object
+          type: object
+        monitor:
+          $ref: '#/components/schemas/Monitor'
+          type: object
+        oauth_client_id:
+          type: string
+        oauth_keys:
+          properties:
+            key:
+              type: string
+          type: object
+        org_id:
+          type: string
+        per:
+          type: number
+        quota_max:
+          type: integer
+        quota_remaining:
+          type: integer
+        quota_renewal_rate:
+          type: integer
+        quota_renews:
+          type: integer
+        rate:
+          type: number
+        rsa_certificate_id:
+          type: string
+        session_lifetime:
+          type: integer
+        tags:
+          items:
+            type: string
+          type: array
+        throttle_interval:
+          type: number
+        throttle_retry_limit:
+          type: integer
+      type: object
+    Type:
+      properties:
+        fields:
+          items:
+            type: string
+          type: array
+        name:
+          type: string
+      type: object
+    apiStatusMessage:
+      properties:
+        message:
+          type: string
+        status:
+          type: string
+      type: object
+  securitySchemes:
+    AuthorizationHeader:
+      description: Input your token
+      scheme: bearer
+      type: http
+info:
+  contact:
+    email: person@example.com
+    name: Person Example
+  description: Rest API For Tyk Gateway!
+  license:
+    name: MIT
+    url: https://en.wikipedia.org/wiki/MIT_License
+  termsOfService: http://www.example.com
+  title: Tyk Gateway API
+  version: 5.0.1
+openapi: 3.0.0
+paths:
+  /tyk/keys:
+    post:
+      description: ' Create a new key and hash.'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SessionState'
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/apiStatusMessage'
+          description: Status message with key details.
+      summary: Create a new key.
+      tags:
+      - keys
+security:
+- AuthorizationHeader:
+  - read
+  - write
+servers:
+- description: ' Local'
+  url: http://localhost:5000
+- description: ' Development'
+  url: http://www.example-dev.com
+- description: ' Production'
+  url: http://www.example.com
