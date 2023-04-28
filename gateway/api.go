@@ -1944,6 +1944,12 @@ func (gw *Gateway) resetHandler(fn func()) http.HandlerFunc {
 	}
 }
 
+// @Title Create a new key.
+// @Description Create a new key and hash.
+// @Param  key  body  user.SessionState  true  "Info for a key."
+// @Success  201  object  apiStatusMessage  "Status message with key details."
+// @Resource keys
+// @Route /tyk/keys [post]
 func (gw *Gateway) createKeyHandler(w http.ResponseWriter, r *http.Request) {
 	newSession := new(user.SessionState)
 	if err := json.NewDecoder(r.Body).Decode(newSession); err != nil {
