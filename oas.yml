@@ -282,11 +282,19 @@ components:
         name:
           type: string
       type: object
-    apiStatusMessage:
+    apiModifyKeySuccess:
       properties:
-        message:
+        action:
+          example: added
+          type: string
+        key:
+          example: "1234567890987654321"
+          type: string
+        key_hash:
+          example: bc123456
           type: string
         status:
+          example: ok
           type: string
       type: object
   securitySchemes:
@@ -321,8 +329,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/apiStatusMessage'
-          description: Status message with key details.
+                $ref: '#/components/schemas/apiModifyKeySuccess'
+          description: Response returned with key, hash and confirmation that key
+            has been added
       summary: Create a new key.
       tags:
       - keys

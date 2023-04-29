@@ -76,10 +76,10 @@ var (
 // swagger:model apiModifyKeySuccess
 type apiModifyKeySuccess struct {
 	// in:body
-	Key     string `json:"key"`
-	Status  string `json:"status"`
-	Action  string `json:"action"`
-	KeyHash string `json:"key_hash,omitempty"`
+    Key     string `json:"key" example:"1234567890987654321"`
+    Status  string `json:"status" example:"ok"`
+    Action  string `json:"action" example:"added"`
+    KeyHash string `json:"key_hash,omitempty" example:"bc123456"`
 }
 
 // apiStatusMessage represents an API status message
@@ -1947,7 +1947,7 @@ func (gw *Gateway) resetHandler(fn func()) http.HandlerFunc {
 // @Title Create a new key.
 // @Description Create a new key and hash.
 // @Param  key  body  user.SessionState  true  "Info for a key."
-// @Success  201  object  apiStatusMessage  "Status message with key details."
+// @Success  201  object  apiModifyKeySuccess  "Response returned with key, hash and confirmation that key has been added"
 // @Resource keys
 // @Route /tyk/keys [post]
 func (gw *Gateway) createKeyHandler(w http.ResponseWriter, r *http.Request) {
