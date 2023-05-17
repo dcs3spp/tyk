@@ -2,5 +2,5 @@
 
 file="$1"
 
-vacuum lint -d $file
+vacuum lint -r tyk_oas_lint_ruleset.yml -d $file
 
