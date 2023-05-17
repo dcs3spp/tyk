@@ -10,16 +10,16 @@ on:
 jobs:
   lint-oas:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
-      - name: Use Node.js 18
+      - name: "Use Node.js 18"
         uses: actions/setup-node@v3
         with:
           node-version: 18
       - run: yarn global add @quobix/vacuum@0.0.55
-        - name: Lint OAS
-          run: |
-            echo "FILE_PATH=${{ github.event.inputs.oas-file-path }}" >> $GITHUB_ENV
-            echo "${{ env.FILE_PATH }}"
-            echo "Linting OAS API definition file ${{ env.FILE_ATH }}"
-            vacuum
+      - run: |
+          echo "FILE_PATH=${{ github.event.inputs.oas-file-path }}" >> $GITHUB_ENV
+          echo "${{ env.FILE_PATH }}"
+          echo "Linting OAS API definition file ${{ env.FILE_ATH }}"
+          vacuum
