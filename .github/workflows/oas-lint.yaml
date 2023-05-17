@@ -5,7 +5,7 @@ on:
       oas-file-path:
         description: "The path to the oas swagger file"
         required: true
-        default: "feat/oas-lint"
+        default: "swagger.yml"
 
 jobs:
   lint-oas:
