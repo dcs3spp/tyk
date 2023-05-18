@@ -19,7 +19,4 @@ jobs:
           node-version: 18
       - run: yarn global add @quobix/vacuum@0.0.55
       - run: |
-          echo "FILE_PATH=${{ github.event.inputs.oas-file-path }}" >> $GITHUB_ENV
-          echo "${{ env.FILE_PATH }}"
-          echo "Linting OAS API definition file ${{ env.FILE_PATH }}"
           ./oas_lint.sh ${{ github.event.inputs.oas-file-path }}
