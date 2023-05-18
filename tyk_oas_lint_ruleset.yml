@@ -1,1 +1,23 @@
-extends: [[spectral:oas, recommended]]
+extends:
+  [[spectral:oas, recommended]]
+  # rules:
+  # ----
+  # Custom OAS rules
+  # Some example rules available from:
+  # - https://github.com/stoplightio/spectral-rulesets
+  # - https://github.com/adidas/api-guidelines/blob/master/.spectral.yml
+  # Trying the following:
+  # - Require valid example in parameters
+  # - Require valid eample in definitions
+  # ----
+  #
+  # adidas-oas2-example-exists-in-parameters:
+  #   description: All models MUST have a valid example.
+  #   severity: error
+  #   recommended: true
+  #   formats:
+  #     - oas2
+  #   message: "{{ property }} MUST have a valid example."
+  #   given: "$..parameters..[?(@.in == 'body' && (@.example || @.schema.$ref))]"
+  #   then:
+  #     function: truthy
