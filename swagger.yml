@@ -2967,9 +2967,10 @@ components:
     Policy:
       properties:
         _id:
-          $ref: "#/components/schemas/ObjectId"
           type: object
           x-go-name: ID
+          additionalProperties:
+            $ref: "#/components/schemas/ObjectId"
         id:
           type: string
           x-go-name: ID
@@ -3032,9 +3033,10 @@ components:
           type: number
           x-go-name: KeyExpiresIn
         partitions:
-          $ref: "#/components/schemas/PolicyPartitions"
           type: object
           x-go-name: Partitions
+          additionalProperties:
+            $ref: "#/components/schemas/PolicyPartitions"
         last_updated:
           type: string
           x-go-name: LastUpdates
